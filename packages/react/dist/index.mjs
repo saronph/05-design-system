@@ -15,6 +15,198 @@ var colors = {
   ignite700: "#015F43",
   ignite900: "#00291D"
 };
+var fontSizes = {
+  xxs: "0.625rem",
+  xs: "0.75rem",
+  sm: "0.875rem",
+  md: "1rem",
+  lg: "1.125rem",
+  xl: "1.25rem",
+  "2xl": "1.5rem",
+  "4xl": "2rem",
+  "5xl": "2.25rem",
+  "6xl": "3rem",
+  "7xl": "4rem",
+  "8xl": "4.5rem",
+  "9xl": "6rem"
+};
+var fontWeights = {
+  regular: "400",
+  medium: "500",
+  bold: "700"
+};
+var fonts = {
+  default: "Roboto, sans-serif",
+  code: "monospace"
+};
+var lineHeights = {
+  shorter: "125%",
+  short: "140%",
+  base: "160%",
+  tall: "180%"
+};
+var radii = {
+  px: "1px",
+  xs: "4px",
+  sm: "6px",
+  md: "8px",
+  lg: "16px",
+  full: "99999px"
+};
+var space = {
+  1: "0.25rem",
+  2: "0.5rem",
+  3: "0.75rem",
+  4: "1rem",
+  5: "1.25rem",
+  6: "1.5rem",
+  7: "1.75rem",
+  8: "2rem",
+  10: "2.5rem",
+  12: "3rem",
+  16: "4rem",
+  20: "5rem",
+  40: "10rem",
+  64: "16rem",
+  80: "20rem"
+};
 
-// src/index.ts
-console.log(colors);
+// src/styles/index.ts
+import { createStitches, defaultThemeMap } from "@stitches/react";
+var {
+  styled,
+  css,
+  globalCss,
+  keyframes,
+  getCssText,
+  theme,
+  createTheme,
+  config
+} = createStitches({
+  themeMap: {
+    ...defaultThemeMap,
+    height: "space",
+    width: "space"
+  },
+  theme: {
+    colors,
+    fontSizes,
+    fontWeights,
+    fonts,
+    lineHeights,
+    radii,
+    space
+  }
+});
+
+// src/components/Box.tsx
+var Box = styled("div", {
+  padding: "$4",
+  borderRadius: "$md",
+  backgroundColor: "$gray800",
+  border: "1px solid $gray600"
+});
+
+// src/components/Text.tsx
+var Text = styled("p", {
+  fontFamily: "$default",
+  lineHeight: "$base",
+  margin: 0,
+  color: "$gray100",
+  variants: {
+    size: {
+      xxs: { fontSizes: "$xxs" },
+      xs: { fontSizes: "$xs" },
+      sm: { fontSizes: "$sm" },
+      md: { fontSizes: "$md" },
+      lg: { fontSizes: "$lg" },
+      xl: { fontSizes: "$xl" },
+      "2xl": { fontSizes: "$2xl" },
+      "4xl": { fontSizes: "$4xl" },
+      "5xl": { fontSizes: "$5xl" },
+      "6xl": { fontSizes: "$6xl" },
+      "7xl": { fontSizes: "$7xl" },
+      "8xl": { fontSizes: "$8xl" },
+      "9xl": { fontSizes: "$9xl" }
+    }
+  },
+  defaultVariants: {
+    size: "md"
+  }
+});
+
+// src/components/Heading.tsx
+var Heading = styled("h2", {
+  fontFamily: "$default",
+  lineHeight: "$shorter",
+  margin: 0,
+  color: "$gray100",
+  variants: {
+    size: {
+      sm: { fontSizes: "$xl" },
+      md: { fontSizes: "$2xl" },
+      lg: { fontSizes: "$4xl" },
+      "2xl": { fontSizes: "$5xl" },
+      "3xl": { fontSizes: "$6xl" },
+      "4xl": { fontSizes: "$7xl" },
+      "5xl": { fontSizes: "$8xl" },
+      "6xl": { fontSizes: "$9xl" }
+    }
+  },
+  defaultVariants: {
+    size: "md"
+  }
+});
+
+// src/components/Avatar/index.tsx
+import { User } from "phosphor-react";
+
+// src/components/Avatar/styles.ts
+import * as Avatar from "@radix-ui/react-avatar";
+var AvatarContainer = styled(Avatar.Root, {
+  borderRadius: "$full",
+  display: "inline-block",
+  width: "$12",
+  overflow: "hidden"
+});
+var AvatarImage = styled(Avatar.Image, {
+  width: "100%",
+  height: "100%",
+  objectFit: "cover",
+  borderRadius: "inherit"
+});
+var AvatarFallback = styled(Avatar.Fallback, {
+  width: "100%",
+  height: "100%",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  backgroundColor: "$gray600",
+  color: "$gray800",
+  svg: {
+    width: "$6",
+    height: "$6"
+  }
+});
+
+// src/components/Avatar/index.tsx
+import { jsx, jsxs } from "react/jsx-runtime";
+function Avatar2(props) {
+  return /* @__PURE__ */ jsxs(AvatarContainer, {
+    children: [
+      /* @__PURE__ */ jsx(AvatarImage, {
+        ...props
+      }),
+      /* @__PURE__ */ jsx(AvatarFallback, {
+        delayMs: 600,
+        children: /* @__PURE__ */ jsx(User, {})
+      })
+    ]
+  });
+}
+export {
+  Avatar2 as Avatar,
+  Box,
+  Heading,
+  Text
+};

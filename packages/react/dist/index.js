@@ -1,4 +1,37 @@
 "use strict";
+var __create = Object.create;
+var __defProp = Object.defineProperty;
+var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+var __getOwnPropNames = Object.getOwnPropertyNames;
+var __getProtoOf = Object.getPrototypeOf;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __export = (target, all) => {
+  for (var name in all)
+    __defProp(target, name, { get: all[name], enumerable: true });
+};
+var __copyProps = (to, from, except, desc) => {
+  if (from && typeof from === "object" || typeof from === "function") {
+    for (let key of __getOwnPropNames(from))
+      if (!__hasOwnProp.call(to, key) && key !== except)
+        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+  }
+  return to;
+};
+var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+  isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
+  mod
+));
+var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+
+// src/index.tsx
+var src_exports = {};
+__export(src_exports, {
+  Avatar: () => Avatar2,
+  Box: () => Box,
+  Heading: () => Heading,
+  Text: () => Text
+});
+module.exports = __toCommonJS(src_exports);
 
 // ../tokens/dist/index.mjs
 var colors = {
@@ -17,6 +50,199 @@ var colors = {
   ignite700: "#015F43",
   ignite900: "#00291D"
 };
+var fontSizes = {
+  xxs: "0.625rem",
+  xs: "0.75rem",
+  sm: "0.875rem",
+  md: "1rem",
+  lg: "1.125rem",
+  xl: "1.25rem",
+  "2xl": "1.5rem",
+  "4xl": "2rem",
+  "5xl": "2.25rem",
+  "6xl": "3rem",
+  "7xl": "4rem",
+  "8xl": "4.5rem",
+  "9xl": "6rem"
+};
+var fontWeights = {
+  regular: "400",
+  medium: "500",
+  bold: "700"
+};
+var fonts = {
+  default: "Roboto, sans-serif",
+  code: "monospace"
+};
+var lineHeights = {
+  shorter: "125%",
+  short: "140%",
+  base: "160%",
+  tall: "180%"
+};
+var radii = {
+  px: "1px",
+  xs: "4px",
+  sm: "6px",
+  md: "8px",
+  lg: "16px",
+  full: "99999px"
+};
+var space = {
+  1: "0.25rem",
+  2: "0.5rem",
+  3: "0.75rem",
+  4: "1rem",
+  5: "1.25rem",
+  6: "1.5rem",
+  7: "1.75rem",
+  8: "2rem",
+  10: "2.5rem",
+  12: "3rem",
+  16: "4rem",
+  20: "5rem",
+  40: "10rem",
+  64: "16rem",
+  80: "20rem"
+};
 
-// src/index.ts
-console.log(colors);
+// src/styles/index.ts
+var import_react = require("@stitches/react");
+var {
+  styled,
+  css,
+  globalCss,
+  keyframes,
+  getCssText,
+  theme,
+  createTheme,
+  config
+} = (0, import_react.createStitches)({
+  themeMap: {
+    ...import_react.defaultThemeMap,
+    height: "space",
+    width: "space"
+  },
+  theme: {
+    colors,
+    fontSizes,
+    fontWeights,
+    fonts,
+    lineHeights,
+    radii,
+    space
+  }
+});
+
+// src/components/Box.tsx
+var Box = styled("div", {
+  padding: "$4",
+  borderRadius: "$md",
+  backgroundColor: "$gray800",
+  border: "1px solid $gray600"
+});
+
+// src/components/Text.tsx
+var Text = styled("p", {
+  fontFamily: "$default",
+  lineHeight: "$base",
+  margin: 0,
+  color: "$gray100",
+  variants: {
+    size: {
+      xxs: { fontSizes: "$xxs" },
+      xs: { fontSizes: "$xs" },
+      sm: { fontSizes: "$sm" },
+      md: { fontSizes: "$md" },
+      lg: { fontSizes: "$lg" },
+      xl: { fontSizes: "$xl" },
+      "2xl": { fontSizes: "$2xl" },
+      "4xl": { fontSizes: "$4xl" },
+      "5xl": { fontSizes: "$5xl" },
+      "6xl": { fontSizes: "$6xl" },
+      "7xl": { fontSizes: "$7xl" },
+      "8xl": { fontSizes: "$8xl" },
+      "9xl": { fontSizes: "$9xl" }
+    }
+  },
+  defaultVariants: {
+    size: "md"
+  }
+});
+
+// src/components/Heading.tsx
+var Heading = styled("h2", {
+  fontFamily: "$default",
+  lineHeight: "$shorter",
+  margin: 0,
+  color: "$gray100",
+  variants: {
+    size: {
+      sm: { fontSizes: "$xl" },
+      md: { fontSizes: "$2xl" },
+      lg: { fontSizes: "$4xl" },
+      "2xl": { fontSizes: "$5xl" },
+      "3xl": { fontSizes: "$6xl" },
+      "4xl": { fontSizes: "$7xl" },
+      "5xl": { fontSizes: "$8xl" },
+      "6xl": { fontSizes: "$9xl" }
+    }
+  },
+  defaultVariants: {
+    size: "md"
+  }
+});
+
+// src/components/Avatar/index.tsx
+var import_phosphor_react = require("phosphor-react");
+
+// src/components/Avatar/styles.ts
+var Avatar = __toESM(require("@radix-ui/react-avatar"));
+var AvatarContainer = styled(Avatar.Root, {
+  borderRadius: "$full",
+  display: "inline-block",
+  width: "$12",
+  overflow: "hidden"
+});
+var AvatarImage = styled(Avatar.Image, {
+  width: "100%",
+  height: "100%",
+  objectFit: "cover",
+  borderRadius: "inherit"
+});
+var AvatarFallback = styled(Avatar.Fallback, {
+  width: "100%",
+  height: "100%",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  backgroundColor: "$gray600",
+  color: "$gray800",
+  svg: {
+    width: "$6",
+    height: "$6"
+  }
+});
+
+// src/components/Avatar/index.tsx
+var import_jsx_runtime = require("react/jsx-runtime");
+function Avatar2(props) {
+  return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(AvatarContainer, {
+    children: [
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AvatarImage, {
+        ...props
+      }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AvatarFallback, {
+        delayMs: 600,
+        children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_phosphor_react.User, {})
+      })
+    ]
+  });
+}
+// Annotate the CommonJS export names for ESM import in node:
+0 && (module.exports = {
+  Avatar,
+  Box,
+  Heading,
+  Text
+});
