@@ -204,9 +204,234 @@ function Avatar2(props) {
     ]
   });
 }
+
+// src/components/Button.tsx
+var Button = styled("button", {
+  all: "unset",
+  borderRadius: "$sm",
+  fontSize: "$sm",
+  fontWeight: "$medium",
+  fontFamily: "$default",
+  textAlign: "center",
+  minWidth: 120,
+  boxSizing: "border-box",
+  padding: "0 $4",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  gap: "$2",
+  cursor: "pointer",
+  svg: {
+    width: "$4",
+    height: "$4"
+  },
+  "&:disabled": {
+    backgroundColor: "$gray200",
+    cursor: "not-allowed"
+  },
+  variants: {
+    variant: {
+      primary: {
+        color: "$white",
+        background: "$ignite500",
+        "&:not(:disabled):hover": {
+          background: "$ignite300"
+        }
+      },
+      secondary: {
+        color: "$ignite300",
+        border: "2px solid $ignite500",
+        "&:not(:disabled):hover": {
+          background: "$ignite500",
+          color: "$white"
+        },
+        "&:disabled": {
+          color: "$gray200",
+          borderColor: "$gray200"
+        }
+      },
+      tertiary: {
+        color: "$gray100",
+        "&:not(:disabled):hover": {
+          color: "$white"
+        },
+        "&:disabled": {
+          color: "$gray600"
+        }
+      }
+    },
+    size: {
+      sm: {
+        height: 38
+      },
+      md: {
+        height: 46
+      }
+    }
+  },
+  defaultVariants: {
+    variant: "primary",
+    size: "md"
+  }
+});
+
+// src/components/TextInput/styles.ts
+var TextInputContainer = styled("div", {
+  backgroundColor: "$gray900",
+  padding: "$3 $4",
+  borderRadius: "$sm",
+  boxSizing: "border-box",
+  border: "2px solid $gray900",
+  display: "flex",
+  alignItems: "baseline",
+  "&:focus-within": {
+    borderColor: "$ignite300"
+  },
+  "&:has(input:disabled)": {
+    opacity: 0.5,
+    cursor: "not-allowed"
+  }
+});
+var Prefix = styled("span", {
+  fontFamily: "$default",
+  fontSize: "$sm",
+  color: "$gray400",
+  fontWeight: "regular"
+});
+var Input = styled("input", {
+  fontFamily: "$default",
+  fontSize: "$sm",
+  fontWeight: "regular",
+  color: "White",
+  backgroundColor: "transparent",
+  border: "none",
+  width: "100%",
+  "&:focus": {
+    outline: 0
+  },
+  "&:disabled": {
+    cursor: "not-allowed"
+  },
+  "&:placeholder": {
+    color: "$gray400"
+  }
+});
+
+// src/components/TextInput/index.tsx
+import { jsx as jsx2, jsxs as jsxs2 } from "react/jsx-runtime";
+function TextInput({ prefix, ...props }) {
+  return /* @__PURE__ */ jsxs2(TextInputContainer, {
+    children: [
+      !!prefix && /* @__PURE__ */ jsx2(Prefix, {
+        children: prefix
+      }),
+      /* @__PURE__ */ jsx2(Input, {
+        ...props
+      })
+    ]
+  });
+}
+
+// src/components/TextArea.tsx
+var TextArea = styled("textarea", {
+  backgroundColor: "$gray900",
+  padding: "$3 $4",
+  borderRadius: "$sm",
+  boxSizing: "border-box",
+  border: "2px solid $gray900",
+  fontFamily: "$default",
+  fontSize: "$sm",
+  color: "$white",
+  fontWeight: "$regular",
+  resize: "vertical",
+  minHeight: 80,
+  "&:focus": {
+    outline: "none",
+    borderColor: "$ignite300"
+  },
+  "&:disabled": {
+    opacity: 0.5,
+    cursor: "not-allowed"
+  },
+  "&:placeholder": {
+    color: "$gray400"
+  }
+});
+
+// src/components/Checkbox/index.tsx
+import { Check } from "phosphor-react";
+
+// src/components/Checkbox/styles.ts
+import * as Checkbox from "@radix-ui/react-checkbox";
+var CheckboxContainer = styled(Checkbox.Root, {
+  all: "unset",
+  width: "$6",
+  height: "$6",
+  backgroundColor: "$gray900",
+  borderRadius: "$xs",
+  lineHeight: 0,
+  cursor: "pointer",
+  overflow: "hidden",
+  boxSizing: "border-box",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  border: "2px solid $gray900",
+  '&[data-state="checked"]': {
+    backgroundColor: "$ignite300"
+  },
+  "&:focus": {
+    border: "2px solid $ignite300"
+  }
+});
+var slideIn = keyframes({
+  from: {
+    transform: "translateY(-100%)"
+  },
+  to: {
+    transform: "translateY(0)"
+  }
+});
+var slideOut = keyframes({
+  from: {
+    transform: "translateY(0)"
+  },
+  to: {
+    transform: "translateY(-100%)"
+  }
+});
+var CheckboxIndicator = styled(Checkbox.Indicator, {
+  color: "$white",
+  width: "$4",
+  height: "$4",
+  '&[data-state="checked"]': {
+    animation: `${slideIn} 200ms ease-out`
+  },
+  '&[data-state="unchecked"]': {
+    animation: `${slideOut} 200ms ease-out`
+  }
+});
+
+// src/components/Checkbox/index.tsx
+import { jsx as jsx3 } from "react/jsx-runtime";
+function Checkbox2(props) {
+  return /* @__PURE__ */ jsx3(CheckboxContainer, {
+    ...props,
+    children: /* @__PURE__ */ jsx3(CheckboxIndicator, {
+      asChild: true,
+      children: /* @__PURE__ */ jsx3(Check, {
+        weight: "bold"
+      })
+    })
+  });
+}
 export {
   Avatar2 as Avatar,
   Box,
+  Button,
+  Checkbox2 as Checkbox,
   Heading,
-  Text
+  Text,
+  TextArea,
+  TextInput
 };
