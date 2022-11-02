@@ -25,7 +25,6 @@ export const Button = styled('button', {
   },
 
   '&:disabled': {
-    backgroundColor: '$gray200',
     cursor: 'not-allowed',
   },
 
@@ -34,6 +33,10 @@ export const Button = styled('button', {
       primary: {
         color: '$white',
         background: '$ignite500',
+
+        '&:disabled': {
+          backgroundColor: '$gray200',
+        },
 
         '&:not(:disabled):hover': {
           background: '$ignite300',
@@ -88,3 +91,5 @@ export const Button = styled('button', {
 export interface ButtonProps extends ComponentProps<typeof Button> {
   as?: ElementType;
 }
+
+Button.displayName = 'Button';

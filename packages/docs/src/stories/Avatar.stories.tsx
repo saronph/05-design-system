@@ -8,6 +8,13 @@ export default {
     src: 'https://github.com/saronph.png',
     alt: 'Saron Medeiros',
   },
+  argTypes: {
+    src: {
+      control: {
+        type: 'text',
+      },
+    },
+  },
 } as Meta<AvatarProps>;
 
 export const Primary: StoryObj<AvatarProps> = {};

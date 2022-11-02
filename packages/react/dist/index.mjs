@@ -106,6 +106,7 @@ var Box = styled("div", {
   backgroundColor: "$gray800",
   border: "1px solid $gray600"
 });
+Box.displayName = "Box";
 
 // src/components/Text.tsx
 var Text = styled("p", {
@@ -115,25 +116,26 @@ var Text = styled("p", {
   color: "$gray100",
   variants: {
     size: {
-      xxs: { fontSizes: "$xxs" },
-      xs: { fontSizes: "$xs" },
-      sm: { fontSizes: "$sm" },
-      md: { fontSizes: "$md" },
-      lg: { fontSizes: "$lg" },
-      xl: { fontSizes: "$xl" },
-      "2xl": { fontSizes: "$2xl" },
-      "4xl": { fontSizes: "$4xl" },
-      "5xl": { fontSizes: "$5xl" },
-      "6xl": { fontSizes: "$6xl" },
-      "7xl": { fontSizes: "$7xl" },
-      "8xl": { fontSizes: "$8xl" },
-      "9xl": { fontSizes: "$9xl" }
+      xxs: { fontSize: "$xxs" },
+      xs: { fontSize: "$xs" },
+      sm: { fontSize: "$sm" },
+      md: { fontSize: "$md" },
+      lg: { fontSize: "$lg" },
+      xl: { fontSize: "$xl" },
+      "2xl": { fontSize: "$2xl" },
+      "4xl": { fontSize: "$4xl" },
+      "5xl": { fontSize: "$5xl" },
+      "6xl": { fontSize: "$6xl" },
+      "7xl": { fontSize: "$7xl" },
+      "8xl": { fontSize: "$8xl" },
+      "9xl": { fontSize: "$9xl" }
     }
   },
   defaultVariants: {
     size: "md"
   }
 });
+Text.displayName = "Text";
 
 // src/components/Heading.tsx
 var Heading = styled("h2", {
@@ -143,20 +145,21 @@ var Heading = styled("h2", {
   color: "$gray100",
   variants: {
     size: {
-      sm: { fontSizes: "$xl" },
-      md: { fontSizes: "$2xl" },
-      lg: { fontSizes: "$4xl" },
-      "2xl": { fontSizes: "$5xl" },
-      "3xl": { fontSizes: "$6xl" },
-      "4xl": { fontSizes: "$7xl" },
-      "5xl": { fontSizes: "$8xl" },
-      "6xl": { fontSizes: "$9xl" }
+      sm: { fontSize: "$xl" },
+      md: { fontSize: "$2xl" },
+      lg: { fontSize: "$4xl" },
+      "2xl": { fontSize: "$5xl" },
+      "3xl": { fontSize: "$6xl" },
+      "4xl": { fontSize: "$7xl" },
+      "5xl": { fontSize: "$8xl" },
+      "6xl": { fontSize: "$9xl" }
     }
   },
   defaultVariants: {
     size: "md"
   }
 });
+Heading.displayName = "Heading";
 
 // src/components/Avatar/index.tsx
 import { User } from "phosphor-react";
@@ -204,6 +207,7 @@ function Avatar2(props) {
     ]
   });
 }
+Avatar2.displayName = "Avatar";
 
 // src/components/Button.tsx
 var Button = styled("button", {
@@ -226,7 +230,6 @@ var Button = styled("button", {
     height: "$4"
   },
   "&:disabled": {
-    backgroundColor: "$gray200",
     cursor: "not-allowed"
   },
   variants: {
@@ -234,6 +237,9 @@ var Button = styled("button", {
       primary: {
         color: "$white",
         background: "$ignite500",
+        "&:disabled": {
+          backgroundColor: "$gray200"
+        },
         "&:not(:disabled):hover": {
           background: "$ignite300"
         }
@@ -274,6 +280,7 @@ var Button = styled("button", {
     size: "md"
   }
 });
+Button.displayName = "Button";
 
 // src/components/TextInput/styles.ts
 var TextInputContainer = styled("div", {
@@ -331,6 +338,7 @@ function TextInput({ prefix, ...props }) {
     ]
   });
 }
+TextInput.displayName = "TextInput";
 
 // src/components/TextArea.tsx
 var TextArea = styled("textarea", {
@@ -357,6 +365,7 @@ var TextArea = styled("textarea", {
     color: "$gray400"
   }
 });
+TextArea.displayName = "TextArea";
 
 // src/components/Checkbox/index.tsx
 import { Check } from "phosphor-react";
@@ -425,12 +434,67 @@ function Checkbox2(props) {
     })
   });
 }
+Checkbox2.displayName = "Checkbox";
+
+// src/components/MultiStep/styles.ts
+var MultiStepContainer = styled("div", {});
+var Label = styled(Text, {
+  color: "$gray200",
+  defaultVariants: {
+    size: "xs"
+  }
+});
+var Steps = styled("div", {
+  display: "grid",
+  gridTemplateColumns: "repeat(var(--steps-size), 1fr)",
+  gap: "$2",
+  marginTop: "$1"
+});
+var Step = styled("div", {
+  height: "$1",
+  borderRadius: "$px",
+  backgroundColor: "$gray600",
+  variants: {
+    active: {
+      true: {
+        backgroundColor: "$gray100"
+      }
+    }
+  }
+});
+
+// src/components/MultiStep/index.tsx
+import { jsx as jsx4, jsxs as jsxs3 } from "react/jsx-runtime";
+function MultiStep({ size, currentStep = 1 }) {
+  return /* @__PURE__ */ jsxs3(MultiStepContainer, {
+    children: [
+      /* @__PURE__ */ jsxs3(Label, {
+        children: [
+          "Step ",
+          currentStep,
+          " of ",
+          size
+        ]
+      }),
+      /* @__PURE__ */ jsx4(Steps, {
+        css: { "--steps-size": size },
+        children: Array.from({ length: size }, (_, i) => i + 1).map((step) => {
+          return /* @__PURE__ */ jsx4(Step, {
+            active: currentStep >= step
+          }, step);
+        })
+      })
+    ]
+  });
+}
+MultiStep.displayName = "MultiStep";
 export {
   Avatar2 as Avatar,
   Box,
   Button,
   Checkbox2 as Checkbox,
   Heading,
+  MultiStep,
   Text,
   TextArea,
   TextInput
