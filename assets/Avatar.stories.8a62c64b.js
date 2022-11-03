@@ -1,0 +1,2 @@
+import{A as t}from"./index.03e5bb2e.js";import"./index.35d42ada.js";import"./iframe.8cccf207.js";import"./index.2f5c9eb4.js";import"./jsx-runtime.13f1047a.js";const p={title:"Data display/Avatar",component:t,args:{src:"https://github.com/saronph.png",alt:"Saron Medeiros"},argTypes:{src:{control:{type:"text"}}}},c={},e={args:{src:void 0}},m=["Primary","WithFallback"];export{c as Primary,e as WithFallback,m as __namedExportsOrder,p as default};
+//# sourceMappingURL=Avatar.stories.8a62c64b.js.map
